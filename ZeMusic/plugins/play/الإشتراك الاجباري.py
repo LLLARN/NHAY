@@ -1,32 +1,29 @@
 from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
-from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
+from pyrogram.types import Message
+from pyrogram.types import InlineKeyboardMarkup as Markup, InlineKeyboardButton as Button
+from pyrogram.enums import ChatType
+from pyrogram.errors import UserNotParticipant
 from ZeMusic import app
 
-Muntazer =""
-@app.on_message(filters.incoming & filters.private, group=-1)
-async def must_join_channel(app: Client, msg: Message):
-    if not Muntazer:
-        return
-    try:
-        try:
-            await app.get_chat_member(Muntazer, msg.from_user.id)
-        except UserNotParticipant:
-            if Muntazer.isalpha():
-                link = "https://t.me/" + Muntazer
-            else:
-                chat_info = await app.get_chat(Muntazer)
-                link = chat_info.invite_link
-            try:
-                await msg.reply(
-                    f"~︙عزيزي {msg.from_user.mention} \n~︙عليك الأشتراك في قناة البوت \n~︙قناة البوت : @{Muntazer}.",
-                    disable_web_page_preview=True,
-                    reply_markup=InlineKeyboardMarkup([
-                        [InlineKeyboardButton("• 𝐒𝐨𝐮𝐫𝐜𝐞 𝐋𝐚𝐫𝐢𝐧 🎧", url=f"https://t.me/SOURCELARIN")]
-                    ])
-                )
-                await msg.stop_propagation()
-            except ChatWriteForbidden:
-                pass
-    except ChatAdminRequired:
-        print(f"I m not admin in the MUST_JOIN chat {Muntazer}!")
+channel = "eo_u7"
+async def subscription(_, __: Client, message: Message):
+    user_id = message.from_user.id
+    try: await app.get_chat_member(channel, user_id)
+    except UserNotParticipant: return False
+    return True
+    
+subscribed = filters.create(subscription)
+
+@app.on_message(~subscribed)
+async def checker(_: Client, message: Message):
+    if message.chat.type in [ChatType.GROUP, ChatType.SUPERGROUP]: await message.delete()
+    user_id = message.from_user.id
+    user = message.from_user.first_name
+    markup = Markup([
+        [Button("饾悞饾惃饾惍饾惈饾悳饾悶 饾惀饾惃饾惀 馃鈥嶁檧", url=f"https://t.me/{channel}")]
+    ])
+    await message.reply(
+        f"毓匕乇賸丕 毓夭賷夭賷 {user}毓賱賷賰 丕賱廿卮鬲乇丕賰 亘賯賳丕丞 丕賱爻賵乇 兀賵賱丕.",
+        reply_markup = markup
+    )
+    
