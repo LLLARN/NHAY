@@ -5,7 +5,7 @@ from pyrogram.enums import ChatType
 from pyrogram.errors import UserNotParticipant
 from ZeMusic import app
 
-channel = "eo_u7"
+channel = "K55DD"
 async def subscription(_, __: Client, message: Message):
     user_id = message.from_user.id
     try: await app.get_chat_member(channel, user_id)
