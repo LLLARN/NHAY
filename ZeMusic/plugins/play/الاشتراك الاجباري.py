@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.errors import ChatAdminRequired, UserNotParticipant, ChatWriteForbidden
-from AarohiX import app
+from ZeMusic import app
 from config import Muntazer
 
 @app.on_message(filters.incoming & filters.private, group=-1)
