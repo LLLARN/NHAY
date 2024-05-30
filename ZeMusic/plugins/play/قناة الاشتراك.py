@@ -3,7 +3,7 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from ZeMusic import app
 from config import OWNER_ID
 
-Muntazer = "QQQ_Q50"
+Muntazer = "eo_u7"
 @app.on_message(filters.private & filters.user(OWNER_ID))
 async def must_join_channel(_, message):
     if "‹ قناة الاشتراك ›" in message.text:
