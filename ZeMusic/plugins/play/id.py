@@ -53,10 +53,12 @@ async def iddd(client, message):
     reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        text=config.CHANNEL_NAME, url=config.CHANNEL_LINK)
+            InlineKeyboardButton(text="👍", url=config.CHANNEL_LINK"),
+            InlineKeyboardButton(text="👎", url=f"https://t.me/YMMYC"),
                 ],
+
             ]
+
         ),
     )
 
@@ -110,10 +112,12 @@ async def idjjdd(client, message):
     reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(
-                        text=config.CHANNEL_NAME, url=config.CHANNEL_LINK)
+            InlineKeyboardButton(text="👍", url=config.CHANNEL_LINK"),
+            InlineKeyboardButton(text="👎", url=f"https://t.me/YMMYC"),
                 ],
+
             ]
+
         ),
     )
        
